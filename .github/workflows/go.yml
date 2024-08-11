@@ -1,32 +1,33 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
-name: Go
+name: Build and Upload Binary
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Go
+    - name: Set up Go environment
       uses: actions/setup-go@v4
       with:
-        go-version: '1.20'  # 设置合适的 Go 版本，根据你的项目要求更改
+        go-version: '1.20' # 根据项目的需要设置Go版本
 
-    - name: Build binary
-      run: go build -o dd-web  # 这里的 "dd-web" 是编译后的二进制文件名，您可以根据需要更改
+    - name: Build the binary
+      run: |
+        cd cmd/service
+        go build -o ../../dd-WEB-binary
 
-    - name: Archive production artifacts
+    - name: Upload binary as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: dd-web-binary
-        path: dd-web  # 这里的路径是编译后的二进制文件路径
+        name: dd-WEB-binary
+        path: dd-WEB-binary
