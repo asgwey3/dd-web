@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/flyqie/dd-web/pkg/dd"
-	"github.com/flyqie/dd-web/pkg/http"
+	"github.com/asgwey3/dd-web/pkg/dd"
+	"github.com/asgwey3/dd-web/pkg/http"
 	"log"
 	"os"
 )
